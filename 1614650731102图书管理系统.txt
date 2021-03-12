@@ -1,0 +1,241 @@
+
+
+
+CREATE TABLE BookType(
+  Bt_ID Char(10) NOT NULL,
+  Bt_Name varchar2(20) NOT NULL,
+  Bt_Description varchar2(50) null
+ );
+
+ALTER TABLE booktype
+ADD CONSTRAINT PK_Bt_ID PRIMARY KEY (Bt_ID);
+
+INSERT INTO BookType VALUES ('01','A马、列、毛著作',null);
+
+INSERT INTO BookType VALUES ('02','B哲学','关于哲学方面的书籍');
+
+INSERT INTO BookType VALUES ('03','C社会科学总论',null);
+
+INSERT INTO BookType VALUES ('04','D政治、法律','关于政治和法律方面的书籍');
+
+INSERT INTO BookType VALUES ('05','E军事','关于军事方面的书籍');
+
+INSERT INTO BookType VALUES ('06','F经济','关于宏观经济和微观经济方面的书籍');
+
+INSERT INTO BookType VALUES ('07','G文化、教育、体育',null);
+
+INSERT INTO BookType VALUES ('08','H语言、文字',null);
+
+INSERT INTO BookType VALUES ('09','I文学',null);
+
+INSERT INTO BookType VALUES ('10','J艺术',null);
+
+INSERT INTO BookType VALUES ('11','K历史、地理',null);
+
+INSERT INTO BookType VALUES ('12','N自然科学总论',null);
+
+INSERT INTO BookType VALUES ('13','O数理科学和化学术',null);
+
+INSERT INTO BookType VALUES ('14','P天文学、地球',null);
+
+INSERT INTO BookType VALUES ('15','R医药、卫生',null);
+
+INSERT INTO BookType VALUES ('16','S农业技术（科学）',null);
+
+INSERT INTO BookType VALUES ('17','T工业技术',null);
+
+INSERT INTO BookType VALUES ('18','U交通、运输',null);
+
+INSERT INTO BookType VALUES ('19','V航空、航天',null);
+
+INSERT INTO BookType VALUES ('20','X环境科学、劳动科学',null);
+
+INSERT INTO BookType VALUES ('21','Z综合性图书',null);
+
+INSERT INTO BookType VALUES ('22','M期刊杂志',null);
+
+INSERT INTO BookType VALUES ('23','W电子图书',null);
+
+
+COMMIT;
+
+CREATE TABLE Publisher(
+P_ID		Char(4)		Not null,
+P_Name		Varchar(30)	Not null,	
+P_ShortName	Varchar(8)	Not null,	
+P_code		Char(4)		Not null,	
+P_Address	Varchar(50)	Not null,	
+P_PostCode	Char(6)		Not null,	
+P_phone		Char(15)   	Not null);	
+INSERT INTO Publisher VALUES('001','电子工业出版社','电子','7-12','北京市海淀区万寿路173信箱','100036','（010）68279077');
+INSERT INTO Publisher VALUES('002','高等教育出版社','高教','7-04','北京西城区德外大街4号','100011','（010）58581001');
+INSERT INTO Publisher VALUES('003','清华大学出版社','清华','7-30','北京清华大学学研大厦','100084','（010）62776969');
+INSERT INTO Publisher VALUES('004','人民邮电出版社','人邮','7-11','北京市崇文区夕照寺街14号','100061','（010）67170985');
+INSERT INTO Publisher VALUES('005','机械工业出版社','机工','7-11','北京市西城区百万庄大街22号','100037','（010）68993821');
+INSERT INTO Publisher VALUES('006','西安电子科技大学出版社','西电','7-56','西安市太白南路2号','710071','（010）88242885');
+INSERT INTO Publisher VALUES('007','科学出版社','科学','7-03','北京东黄城根北街16号','100717','(010)62136131');
+INSERT INTO Publisher VALUES('008','中国劳动社会保障出版社','劳动','7-50','北京市惠新东街1号','100029','（010）64911190');
+INSERT INTO Publisher VALUES('009','中国铁道出版社','铁道','7-11','北京市宣城区右安门西街8号','100054','（010）63583215');
+INSERT INTO Publisher VALUES('010','北京希望电子出版社','希望电子','7-80','北京市海淀区车道沟10号','100089','（010）82702660');
+INSERT INTO Publisher VALUES('011','化学工业出版社','化工','7-50','北京市朝阳区惠新里3号','100029','（010）64982530');
+INSERT INTO Publisher VALUES('012','中国青年出版社','中青','7-50','北京市东四十二条21号','100708','（010）84015588');
+INSERT INTO Publisher VALUES('013','中国电力出版社','电力','7-56','北京市三里河路6号','100044','（010）88515918');
+INSERT INTO Publisher VALUES('014','北京工业大学出版社','北工大','7-56','北京市朝阳区平乐园100号','100022','（010）67392308');
+INSERT INTO Publisher VALUES('015','冶金工业部出版社','冶金','7-50','北京市沙滩嵩祝祝北巷39号','100009','（010）65934239');
+
+commit;
+
+
+CREATE TABLE BookInfo(
+B_ID Varchar2(16) Not null,	
+B_Name	Varchar2(50)	Not null,	
+Bt_ID	Char(10)	Not null,	
+B_Author Varchar2(20)	Not null,	
+B_Translator	Varchar2(20)		Not null,	
+B_ISBN		Varchar2(30)		Not null,	
+P_ID		Char(4)		Not null,	
+B_Date		Date  Not null,	
+B_Edition	number	Not null,	
+B_price		number	Not null,	
+B_Quantity	number 	Not null,	
+B_Detail	Varchar2(100)	Null,	
+B_Pricture	Varchar2(50)	null	);
+
+
+
+ALTER TABLE BookInfo
+    ADD CONSTRAINT FK_Bt_ID          
+    FOREIGN KEY(Bt_ID) REFERENCES BookType(Bt_ID);
+
+INSERT INTO BookInfo VALUES ('TP3/2737','Visual Basic.NET实用教程','17','佟伟光','无','7-5053-8956-4','001',to_date('2003-8-1','yyyy-mm-dd'),1,18,9,null,null);
+INSERT INTO BookInfo VALUES ('TP3/2739','C#程序设计','17','李德奇','无','7-03-015754-0','007',to_date('2005-8-1','yyyy-mm-dd'),1,26,14,null,null);
+INSERT INTO BookInfo VALUES ('TP3/2741','JSP程序设计案例教程','17','刘志成','无','7-115-15380-9','004',to_date('2007-9-1','yyyy-mm-dd'),1,27,4,null,null);
+INSERT INTO BookInfo VALUES ('TP3/2742','数据恢复技术','17','戴士剑、陈永红','无','7-5053-9036-8','001',to_date('2003-8-1','yyyy-mm-dd'),1,39,4,null,null);
+INSERT INTO BookInfo VALUES ('TP3/2744','Visual Basic.NET进销存程序设计','17','阿惟','无','7-302-06731-7','003',to_date('2003-7-1','yyyy-mm-dd'),1,38,4,null,null);
+INSERT INTO BookInfo VALUES ('TP3/2747','VC.NET面向对象程序设计教程','17','赵卫伟、刘瑞光','无','7-111-18764-4','005',to_date('2006-5-1','yyyy-mm-dd'),1,20,9,null,null);
+INSERT INTO BookInfo VALUES ('TP3/2752','Java程序设计案例教程','17','刘志成','无','7-111-18561-7','003',to_date('2004-7-1','yyyy-mm-dd'),1,26,14,null,null);
+INSERT INTO BookInfo VALUES ('TP312/146','C++程序设计与软件技术基础','17','梁普选','无','7-121-00071-7','001',to_date('2004-7-1','yyyy-mm-dd'),1,28,7,null,null);
+INSERT INTO BookInfo VALUES ('TP39/707','数据库基础','17','沈祥玖','无','7-04-012644-3','002',to_date('2003-9-1','yyyy-mm-dd'),1,18.5,4,null,null);
+INSERT INTO BookInfo VALUES ('TP39/711','管理信息系统基础与开发','17','陈承欢、彭勇','无','7-115-13103-1','004',to_date('2005-2-1','yyyy-mm-dd'),1,23,2,null,null);
+INSERT INTO BookInfo VALUES ('TP39/713','关系数据库与SQL语言','17','黄旭明','无','7-04-01375-4','002',to_date('2004-1-1','yyyy-mm-dd'),1,15,4,null,null);
+INSERT INTO BookInfo VALUES ('TP39/716','UML用户指南','17','Grady Booch等','邵维忠等','7-03-012096','007',to_date('2003-8-1','yyyy-mm-dd'),1,35,4,null,null);
+INSERT INTO BookInfo VALUES ('TP39/717','UML数据库设计应用','17','Eric J.Naiburg等','陈立军、郭旭','7-5053-6432-4','001',to_date('2001-3-1','yyyy-mm-dd'),1,30,9,null,null);
+INSERT INTO BookInfo VALUES ('TP39/719','SQL Server 2005实例教程','17','刘志成、陈承欢','无','7-7-302-14733-6','001',to_date('2006-10-1','yyyy-mm-dd'),1,34,3,null,null);
+INSERT INTO BookInfo VALUES ('TP39/720','数据库及其应用系统开发','17','张迎新','无','7-302-12828-6','003',to_date('2006-7-1','yyyy-mm-dd'),1,26,4,null,null);
+
+COMMIT;
+
+
+CREATE TABLE BookStore(
+S_ID		Char(8)		Not null,
+B_ID		Varchar(16)	Not null,
+S_InDate	Date		Not null,	
+S_Operator	Varchar(10)	Not null,	
+S_Position	Varchar(12)	Not null,	
+S_Status	Varchar(4)	Not null);	
+
+INSERT INTO BookStore VALUES('121497','TP39/719',to_date('2006-10-20','yyyy-mm-dd'),'林静','03-03-07','借出');
+INSERT INTO BookStore VALUES('121498','TP39/719',to_date('2006-10-20','yyyy-mm-dd'),'林静','03-03-07','借出');
+INSERT INTO BookStore VALUES('121499','TP39/719',to_date('2006-10-20','yyyy-mm-dd'),'林静','03-03-07','在藏');
+INSERT INTO BookStore VALUES('128349','TP3/2741',to_date('2007-9-20','yyyy-mm-dd'),'林静','03-03-01','借出');
+INSERT INTO BookStore VALUES('128350','TP3/2741',to_date('2007-9-20','yyyy-mm-dd'),'林静','03-03-01','借出');
+INSERT INTO BookStore VALUES('128351','TP3/2741',to_date('2007-9-20','yyyy-mm-dd'),'林静','03-03-01','借出');
+INSERT INTO BookStore VALUES('128352','TP3/2741',to_date('2007-9-20','yyyy-mm-dd'),'林静','03-03-01','遗失');
+INSERT INTO BookStore VALUES('128353','TP39/711',to_date('2005-9-20','yyyy-mm-dd'),'谭芳洁','03-03-01','借出');
+INSERT INTO BookStore VALUES('128354','TP39/711',to_date('2005-9-20','yyyy-mm-dd'),'谭芳洁','03-03-01','在藏');
+INSERT INTO BookStore VALUES('128374','TP3/2752',to_date('2006-12-4','yyyy-mm-dd'),'林静','03-03-02','借出');
+INSERT INTO BookStore VALUES('128375','TP39/716',to_date('2005-9-20','yyyy-mm-dd'),'谭芳洁','03-03-20','借出');
+INSERT INTO BookStore VALUES('128376','TP3/717', to_date('2005-9-20','yyyy-mm-dd'),'谭芳洁','03-03-20','在藏');
+INSERT INTO BookStore VALUES('145353','TP3/2744',to_date('2004-9-20','yyyy-mm-dd'),'谭芳洁','03-03-20','在藏');
+INSERT INTO BookStore VALUES('145354','TP3/2744',to_date('2004-9-20','yyyy-mm-dd'),'谭芳洁','03-03-20','借出');
+INSERT INTO BookStore VALUES('145355','TP3/2744',to_date('2004-9-20','yyyy-mm-dd'),'谭芳洁','03-03-20','借出');
+
+
+commit;
+
+
+
+create table ReaderType
+(Rt_ID char(2) not null,
+Rt_Name varchar2(10) not null,
+Rt_Quantity number not null,
+Rt_Long number not null,
+Rt_Time number not null,
+Rt_Fine number not null);
+
+
+insert into readertype values('01','特殊读者',30,12,5,1.00);
+insert into readertype values('02','一般读者',20,6,3,0.5);
+insert into readertype values('03','管理员',25,12,3,0.5);
+insert into readertype values('04','教师',20,6,5,0.5);
+insert into readertype values('05','学生',10,6,2,0.1);
+
+
+commit;
+
+
+
+create table ReaderInfo
+(R_ID char(8) not null,
+R_Name varchar2(10) not null,
+R_Date Date not null,
+Rt_ID char(2) not null,
+R_Quantity number not null,
+R_Status varchar2(4) not null );
+
+ALTER TABLE ReaderInfo 
+    ADD CONSTRAINT PK_R_ID PRIMARY KEY (R_ID);
+
+INSERT INTO ReaderInfo  VALUES ('0016584','王周应',to_date('2003-9-16','yyyy-mm-dd'),'03',24,'有效');
+INSERT INTO ReaderInfo  VALUES ('0016585','阳杰',to_date('2003-9-16','yyyy-mm-dd'),'02',19,'有效');
+INSERT INTO ReaderInfo  VALUES ('0016586','谢群',to_date('2003-9-16','yyyy-mm-dd'),'02',17,'有效');
+INSERT INTO ReaderInfo  VALUES ('0016587','黄莉',to_date('2003-9-16','yyyy-mm-dd'),'04',19,'有效');
+INSERT INTO ReaderInfo  VALUES ('0016588','向鹏',to_date('2003-9-16','yyyy-mm-dd'),'05',10,'注销');
+INSERT INTO ReaderInfo  VALUES ('0016589','龙川玉',to_date('2003-12-12','yyyy-mm-dd'),'01',28,'有效');
+INSERT INTO ReaderInfo  VALUES ('0016590','谭涛涛',to_date('2003-12-12','yyyy-mm-dd'),'04',20,'有效');
+INSERT INTO ReaderInfo  VALUES ('0016591','黎小清',to_date('2003-12-12','yyyy-mm-dd'),'05',10,'注销');
+INSERT INTO ReaderInfo  VALUES ('0016592','蔡鹿其',to_date('2003-12-12','yyyy-mm-dd'),'03',25,'有效');
+INSERT INTO ReaderInfo  VALUES ('0016593','王谢恩',to_date('2003-12-12','yyyy-mm-dd'),'05',10,'注销');
+INSERT INTO ReaderInfo  VALUES ('0016594','罗存',to_date('2004-9-23','yyyy-mm-dd'),'05',10,'注销');
+INSERT INTO ReaderInfo  VALUES ('0016595','熊燕',to_date('2004-9-23','yyyy-mm-dd'),'02',20,'挂失');
+INSERT INTO ReaderInfo  VALUES ('0016596','王彩梅',to_date('2004-9-23','yyyy-mm-dd'),'05',10,'注销');
+INSERT INTO ReaderInfo  VALUES ('0016597','栗彬',to_date('2004-9-23','yyyy-mm-dd'),'05',8,'注销');
+INSERT INTO ReaderInfo  VALUES ('0016598','孟昭红',to_date('2005-10-17','yyyy-mm-dd'),'02',30,'有效');
+COMMIT;
+
+
+create table BorrowReturn 
+(Br_ID char(6) not null,
+ S_ID char(8) not null,
+R_ID char(8) not null,
+Br_OutDate date not null,
+Br_InDate date null,
+Br_LostDate date null,
+Br_times number null,
+Br_Operator varchar2(10) not null,
+Br_Status varchar2(4) not null );
+
+INSERT INTO BorrowReturn VALUES ('000001','128349','0016584',to_date('2007-6-15','yyyy-mm-dd'),to_date('2007-9-1','yyyy-mm-dd'),NULL, 0 ,'张颖','已还');
+
+INSERT INTO BorrowReturn VALUES ('000002','121497','0016584',to_date('2007-9-15','yyyy-mm-dd'), null ,NULL, 0 ,'张颖','未还');
+
+INSERT INTO BorrowReturn VALUES ('000003','128376','0016584',to_date('2007-9-15','yyyy-mm-dd'),to_date('2007-9-30','yyyy-mm-dd'),NULL, 1 ,'张颖','已还');
+
+INSERT INTO BorrowReturn VALUES ('000004','128350','0016587',to_date('2007-9-15','yyyy-mm-dd'), null ,NULL, 1 ,'张颖','未还');
+
+INSERT INTO BorrowReturn VALUES ('000005','128353','0016589',to_date('2007-9-15','yyyy-mm-dd'), null ,NULL, 0 ,'张颖','未还');
+
+INSERT INTO BorrowReturn VALUES ('000006','128354','0016590',to_date('2007-9-15','yyyy-mm-dd'),to_date('2007-9-30','yyyy-mm-dd'),NULL, 0 ,'张颖','已还');
+
+INSERT INTO BorrowReturn VALUES ('000007','128349','0016584',to_date('2007-9-15','yyyy-mm-dd'), null ,NULL,1 ,'张颖','未还');
+
+INSERT INTO BorrowReturn VALUES ('000008','128375','0016585',to_date('2007-9-15','yyyy-mm-dd'), null ,NULL, 0 ,'江丽娟','未还');
+
+INSERT INTO BorrowReturn VALUES ('000009','128376','0016586',to_date('2007-6-24','yyyy-mm-dd'),to_date('2007-9-24','yyyy-mm-dd'),NULL, 0 ,'江丽娟','已还');
+
+INSERT INTO BorrowReturn VALUES ('000010','145355','0016588',to_date('2007-10-24','yyyy-mm-dd'), null ,NULL, 0 ,'江丽娟','未还');
+
+
+commit;
+
+ 
